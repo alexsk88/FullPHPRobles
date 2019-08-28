@@ -11,7 +11,8 @@ class UsuarioController {
 		require_once 'views/usuarios/mostrar-todos.php';
 	}
 	
-	public function crear(){
+	public function crear()
+	{
 		require_once 'views/usuarios/crear.php';
 	}
 }

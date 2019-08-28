@@ -22,7 +22,7 @@ class NotaController{
 		$nota->setUsuario_id(1);
 		$nota->setTitulo("Nota desde PHP MVC");
 		$nota->setDescripcion("Descricion de mi nota");
-		$guardar = $nota->guardar();
+		$nota->guardar();
 		
 		header("Location: index.php?controller=Nota&action=listar");
 	}
