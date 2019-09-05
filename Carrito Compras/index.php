@@ -1,11 +1,16 @@
 <!-- <h1>Bienvenido a mi web con MVC</h1> -->
 <?php
+    session_start();
+
+    require_once 'helpers/utils.php';
+    // Utilidades, tiene el de borrar session
+
     require_once 'autoload.php';
+    require_once 'config/db.php';
+
     require_once 'config/parameters.php';
     require_once 'views/layout/header.php';
     require_once 'views/layout/sidebar.php';
-
-
 
     function Error()
     {
