@@ -109,4 +109,29 @@ class Usuario
 
         return $estado;
     }
+
+    public function login($email, $password)
+    {
+
+        $estado =  false;
+
+        // Comprobar si existe el User
+        $sql = "SELECT * FROM usuarios WHERE email = '$email'";
+        $login = $this->db->query($sql);
+
+        if($login && $login->num_rows == 1)
+        {
+            // Primero hay que convertir el user a Object
+            $user = $login->fetch_object();
+
+            $verify = password_verify($password, $user->password);
+
+            if($verify)
+            {
+                $estado =  $user;
+            }
+        }
+
+        return $estado;
+    }
 }

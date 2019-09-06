@@ -12,6 +12,11 @@
     require_once 'views/layout/header.php';
     require_once 'views/layout/sidebar.php';
 
+    if(isset($_SESSION['error_login']))
+    {
+        Utils::DeleteSession('error_login');
+    }
+
     function Error()
     {
         $error = new errorController();

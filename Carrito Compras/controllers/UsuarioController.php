@@ -48,4 +48,54 @@ class UsuarioController
         }
         header('Location:'.base_url.'usuario/registro');
     }
+
+    public function login()
+    {   
+        if(isset($_POST))
+        {
+            // Identificar al Usuario 
+
+            // Consultar a la base de datos
+
+            // Crear una Session
+        
+            $userlogin = new Usuario();
+            
+            $identity = $userlogin->login($_POST['email'],$_POST['password']);
+
+            if(is_object($identity) && $identity)
+            {
+                $_SESSION['identity'] = $identity;
+
+                if($identity->rol == 'admin')
+                {
+                    $_SESSION['admin'] = true; 
+                }
+            }
+            else
+            {
+                $_SESSION['error_login'] = true;
+            }
+            
+        }
+        else
+        {
+            $_SESSION['error_login'] = true;
+        }
+        header('Location:'.base_url);
+    }
+
+    public function logout()
+    {
+        if(isset($_SESSION['identity']))
+        {
+            Utils::DeleteSession('identity');
+        }
+        if(isset($_SESSION['admin']))
+        {
+            Utils::DeleteSession('admin');
+        }
+        
+        header("Location:".base_url);
+    }
 }

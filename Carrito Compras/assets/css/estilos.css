@@ -17,3 +17,18 @@
 {
     cursor: pointer;
 }
+.namesesion
+{
+    text-transform: capitalize;
+}
+
+.nombresesioncaja
+{
+    float: right !important;
+    margin-right: 70px;
+}
+.margenopcionmenu
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

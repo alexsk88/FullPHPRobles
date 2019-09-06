@@ -25,16 +25,33 @@
     </div>
 
     <!-- MENU -->
-    <div class="w3-bar w3-black w3-border-top w3-border-green">
-        <a href="#" class="w3-bar-item w3-button">Inicio</a>
-        <a href="#" class="w3-bar-item w3-button">Link 1</a>
+    <div class="w3-bar w3-black w3-border-top w3-border-green margenopcionmenu">
+        <a href="<?= base_url?>" class="w3-bar-item w3-button">Inicio</a>
+        <a href="<?= base_url?>usuario/registro" 
+                class="w3-bar-item w3-button">Registro</a>
         <a href="#" class="w3-bar-item w3-button">Link 2</a>
         <div class="w3-dropdown-hover">
             <button class="w3-button">Categorias </button>
             <div class="w3-dropdown-content w3-bar-block w3-border">
-                <a href="#" class="w3-bar-item w3-button">Link 1</a>
+        
                 <a href="#" class="w3-bar-item w3-button">Link 2</a>
                 <a href="#" class="w3-bar-item w3-button">Link 3</a>
             </div>
         </div>
+
+        <?php if(isset($_SESSION['identity'])):?>
+        <div class="w3-dropdown-hover nombresesioncaja w3-border w3-round w3-border-green">
+            <button class="w3-button">
+                <span class="namesesion">
+                    <?php echo $_SESSION['identity']->nombre.' '.$_SESSION['identity']->apellidos?> 
+                    ▼   
+                </span>
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-border">
+        
+                <a href="<?=base_url?>usuario/logout" class="w3-bar-item w3-button">Cerrar Sesion</a>
+                <a href="#" class="w3-bar-item w3-button">Link 3</a>
+            </div>
+        </div>
+        <?php endif?>
     </div>
