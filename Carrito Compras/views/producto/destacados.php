@@ -1,33 +1,16 @@
-<!-- CONETENIDO CENTRAL -->
-<div class="w3-col" style="width: 78%">
-    <div class="w3-container w3-margin">
+<h1>Algunos de nuestros productos</h1>
 
-        <div class="w3-section w3-center">
-            <h1>PRODUCTOS DESTACADOS</h1>
-        </div>
-        <hr>
-        <div class="w3-row">
-
-            <div class="w3-quarter w3-center">
-                <div class="w3-card w3-margin w3-container">
-                    <img src="<?=base_url?>assets/img/products.png" 
-                    class="img-fluid margenlogo" width="100" alt="Pedidos"><br>
-                    <h2>Camisa Azul Ancha</h2>
-                    <h4 class="w3-text-red w3-round w3-border w3-border-red"><b>$ 56.000</b></h4>
-                    <a href="" class="w3-block w3-btn w3-red w3-round">Comprar</a><br>
-                </div>
-            </div>
-            <div class="w3-quarter w3-center">
-                <div class="w3-card w3-margin w3-container">
-                    <img src="<?=base_url?>assets/img/products.png" 
-                    class="img-fluid margenlogo" width="100" alt="Pedidos"><br>
-                    <h2>Camisa Azul Ancha</h2>
-                    <h4 class="w3-text-red w3-round w3-border w3-border-red"><b>$ 56.000</b></h4>
-                    <a href="" class="w3-block w3-btn w3-red w3-round">Comprar</a><br>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-</div>
+<?php while($product = $productos->fetch_object()): ?>
+	<div class="product">
+		<a href="<?=base_url?>producto/ver&id=<?=$product->id?>">
+			<?php if($product->imagen != null): ?>
+				<img src="<?=base_url?>uploads/images/<?=$product->imagen?>" />
+			<?php else: ?>
+				<img src="<?=base_url?>assets/img/camiseta.png" />
+			<?php endif; ?>
+			<h2><?=$product->nombre?></h2>
+		</a>
+		<p><?=$product->precio?></p>
+		<a href="<?=base_url?>carrito/add&id=<?=$product->id?>" class="button">Comprar</a>
+	</div>
+<?php endwhile; ?>

@@ -1,64 +1,48 @@
-<div class="w3-row w3-container">
-        <!-- BARRA LATERAL -->
-        <div class="w3-col" style="width: 22%">
+<!-- BARRA LATERAL -->
+<aside id="lateral">
 
-            <?php if(!isset($_SESSION['identity'])):?>
-            <form class="w3-container w3-card w3-margin"
-            method="POST"
-            action="<?= base_url?>usuario/login"><br>
-            <div class="w3-center w3-block w3-tag w3-round w3-black" style="padding:3px">
-                <div class="w3-tag w3-round w3-block w3-black w3-border w3-border-blue">
-                    <?php if ( isset($_SESSION['error_login'] )&&$_SESSION['error_login'] == true) {
-                        echo 'Error de user o pass';
-                    } else {
-                        echo 'Entra a la APP';
-                    }?>
-                        
-                </div>
-            </div><br><br>
-                <label>Email</label>
-                <input class="w3-input" name="email" type="email" required>
+	<div id="carrito" class="block_aside">
+		<h3>Mi carrito</h3>
+		<ul>
+			<?php $stats = Utils::statsCarrito(); ?>
+			<li><a href="<?=base_url?>carrito/index">Productos (<?=$stats['count']?>)</a></li>
+			<li><a href="<?=base_url?>carrito/index">Total: <?=$stats['total']?> $</a></li>
+			<li><a href="<?=base_url?>carrito/index">Ver el carrito</a></li>
+		</ul>
+	</div>
+	
+	<div id="login" class="block_aside">
+		
+		<?php if(!isset($_SESSION['identity'])): ?>
+			<h3>Entrar a la web</h3>
+			<form action="<?=base_url?>usuario/login" method="post">
+				<label for="email">Email</label>
+				<input type="email" name="email" />
+				<label for="password">Contraseña</label>
+				<input type="password" name="password" />
+				<input type="submit" value="Enviar" />
+			</form>
+		<?php else: ?>
+			<h3><?=$_SESSION['identity']->nombre?> <?=$_SESSION['identity']->apellidos?></h3>
+		<?php endif; ?>
 
-                <label>Password</label>
-                <input class="w3-input" name="password" type="password" required><br>
+		<ul>
+			<?php if(isset($_SESSION['admin'])): ?>
+				<li><a href="<?=base_url?>categoria/index">Gestionar categorias</a></li>
+				<li><a href="<?=base_url?>producto/gestion">Gestionar productos</a></li>
+				<li><a href="<?=base_url?>pedido/gestion">Gestionar pedidos</a></li>
+			<?php endif; ?>
+			
+			<?php if(isset($_SESSION['identity'])): ?>
+				<li><a href="<?=base_url?>pedido/mis_pedidos">Mis pedidos</a></li>
+				<li><a href="<?=base_url?>usuario/logout">Cerrar sesión</a></li>
+			<?php else: ?> 
+				<li><a href="<?=base_url?>usuario/registro">Registrate aqui</a></li>
+			<?php endif; ?> 
+		</ul>
+	</div>
 
-                <input type="submit" value="Entrar"
-                 class="w3-btn w3-round w3-block w3-green"><br>
+</aside>
 
-            </form>
-            <?php else:?>
-            <ul class="w3-ul w3-margin">
-                <li class="w3-hover-green pointer w3-display-container">
-                <img src="<?= base_url?>assets/img/pedidos.png" 
-                class="img-fluid margenlogo" 
-                width="30"
-                alt="Pedidos">
-                    Mis Pedidos
-                </li>
-                
-                <?php if(isset($_SESSION['admin'] )):?>
-                <li class="w3-hover-green pointer w3-display-container">
-                <img src="<?= base_url?>assets/img/category.png" 
-                class="img-fluid margenlogo" 
-                width="30"
-                alt="Pedidos">
-                    Gestionar Categorias
-                </li>
-                <li class="w3-hover-green pointer w3-display-container">
-                <img src="<?= base_url?>assets/img/products.png" 
-                class="img-fluid margenlogo" 
-                width="30"
-                alt="Pedidos">
-                    Gestionar Productos
-                </li>
-                <li class="w3-hover-green pointer w3-display-container">
-                <img src="<?= base_url?>assets/img/products.png" 
-                class="img-fluid margenlogo" 
-                width="30"
-                alt="Pedidos">
-                    Gestionar Pedidos
-                </li>
-                <?php endif?>
-            </ul>
-        <?php endif?>
-        </div>
+<!-- CONTENIDO CENTRAL -->
+<div id="central">
