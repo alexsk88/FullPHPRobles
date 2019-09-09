@@ -26,6 +26,7 @@ class Categoria{
 	}
 
 	public function getAll(){
+		// Ordena de forma desendentes
 		$categorias = $this->db->query("SELECT * FROM categorias ORDER BY id DESC;");
 		return $categorias;
 	}

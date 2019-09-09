@@ -20,6 +20,7 @@ class Utils{
 	}
 	
 	public static function isIdentity(){
+		// Comprobar si esta identificado o logeado
 		if(!isset($_SESSION['identity'])){
 			header("Location:".base_url);
 		}else{
@@ -39,7 +40,7 @@ class Utils{
 			'count' => 0,
 			'total' => 0
 		);
-		
+		// Cuenta cuanta unidades hay y el total de cada unidad
 		if(isset($_SESSION['carrito'])){
 			$stats['count'] = count($_SESSION['carrito']);
 			

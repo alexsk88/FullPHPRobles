@@ -6,8 +6,9 @@
 		<ul>
 			<?php $stats = Utils::statsCarrito(); ?>
 			<li><a href="<?=base_url?>carrito/index">Productos (<?=$stats['count']?>)</a></li>
-			<li><a href="<?=base_url?>carrito/index">Total: <?=$stats['total']?> $</a></li>
-			<li><a href="<?=base_url?>carrito/index">Ver el carrito</a></li>
+			<li><a href="<?=base_url?>carrito/index">Ver el carrito</a></li><br><hr>
+			<li style=" list-style: none"><b style="color:red; margin:auto;">Total: $ <?php echo number_format($stats['total']);?></b></li>
+			<hr>
 		</ul>
 	</div>
 	

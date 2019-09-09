@@ -3,15 +3,18 @@ require_once 'models/usuario.php';
 
 class usuarioController{
 	
-	public function index(){
+	public function index()
+	{
 		echo "Controlador Usuarios, Acción index";
 	}
 	
-	public function registro(){
+	public function registro()
+	{
 		require_once 'views/usuario/registro.php';
 	}
 	
-	public function save(){
+	public function save()
+	{
 		if(isset($_POST)){
 			
 			$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
@@ -67,6 +70,8 @@ class usuarioController{
 	}
 	
 	public function logout(){
+
+		// Aqui se podia llamar el metodo Utils
 		if(isset($_SESSION['identity'])){
 			unset($_SESSION['identity']);
 		}

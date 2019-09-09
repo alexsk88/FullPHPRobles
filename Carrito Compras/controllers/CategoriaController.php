@@ -13,6 +13,9 @@ class categoriaController{
 	}
 	
 	public function ver(){
+
+		// Ver productos por categoria
+		// Se podia hacer un inner JOIN para traer la categoria
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
 			

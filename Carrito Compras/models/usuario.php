@@ -82,6 +82,7 @@ class Usuario{
 	}
 	
 	public function login(){
+		// Result me dice si esta en la base de datos o no
 		$result = false;
 		$email = $this->email;
 		$password = $this->password;
