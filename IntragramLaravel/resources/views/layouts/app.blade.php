@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/estilos.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -61,6 +62,17 @@
                                 <a class="nav-link" href="{{ route('login') }}">
                                 Subir Imagen</a>
                             </li>
+                            <li class="nav-item">
+                                &nbsp;
+                            </li>
+                            @if(Auth::user()->image)
+                            <li class="nav-item">
+                                <div class="avatar_mask">
+                                    <img src="{{ route('user.avatar',['filename'=>Auth::user()->image])}}" 
+                                     alt="Imagen Avatar user" class="img-fuid">
+                                </div>
+                            </li>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" 
                                 href="#" role="button" data-toggle="dropdown" 
@@ -70,14 +82,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" 
                                 aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                      document.getElementById('logout-form').submit();">
-                                         Cerrar Sesion
-                                     </a>Mi Perfil
+                                <a class="dropdown-item" href="">
+                                    Mi Perfil
+                                     </a>
                                 </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}">
+                                <a class="dropdown-item" href="{{ route('config') }}">
                                     Configuracion
                                 </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

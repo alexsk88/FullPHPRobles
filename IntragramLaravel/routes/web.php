@@ -25,3 +25,9 @@ use App\Image;
 
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/configuracion', 'UserController@config')->name('config');
+
+Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
+Route::post('/updateuser', 'UserController@update')->name('updateuser');
+
+
