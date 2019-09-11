@@ -1,4 +1,5 @@
-CREATE DATABASE IF NOT EXISTS laravel_master;
+CREATE DATABASE laravel_master CHARACTER SET UTF8 collate utf8_bin;
+
 USE laravel_master;
 
 CREATE TABLE IF NOT EXISTS users(
