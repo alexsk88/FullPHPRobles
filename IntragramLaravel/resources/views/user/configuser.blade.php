@@ -15,7 +15,7 @@
                 <div class="card-header">Configuracion de Cuenta</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('updateuser') }}"1
+                    <form method="POST" action="{{ route('updateuser') }}"
                     enctype="multipart/form-data">
                         @csrf
 
