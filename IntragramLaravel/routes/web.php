@@ -34,4 +34,7 @@ Route::post('/updateuser', 'UserController@update')->name('updateuser');
 /*Rutas de Imagen */
 Route::get('/images/create', 'ImageController@create')->name('image.create');
 Route::post('/images/save', 'ImageController@saveImg')->name('saveimg');
+Route::get('/imagen/userimagen/{filename}', 'ImageController@getImage')->name('image.user');
+Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
+
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // $images = Image::orderBy('id','desc')->get();
+
+        // Paginacion de Laravel, MUY EASY
+        $images = Image::orderBy('id','desc')->paginate(4);
+
+        return view('home')
+        ->with(['images'=>$images]);
     }
+
+
 }

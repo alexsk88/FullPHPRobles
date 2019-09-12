@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Image;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ImageController extends Controller
 {
@@ -26,7 +27,8 @@ class ImageController extends Controller
         $descripcion = $request->input('descripcion');
 
         $validate = $this->validate($request,[
-            'descripcion'=> 'String|max:255|required'
+            'descripcion'=> 'String|max:255|required',
+            'imagen'=> 'required|image'
         ]);
 
         // Subir Imagen Al servidor
@@ -43,7 +45,21 @@ class ImageController extends Controller
 
         $imagen->save();
 
-        return redirect()->route('image.create')
+        return redirect()->route('home')
                     ->with(['messague'=> 'Imagen Subida Correctamente']);
+    }
+
+    public function getImage($filename)
+    {
+        $img =\Storage::disk('images')->get($filename);
+        return new Response($img, 200);
+    }
+
+    public function detail($id)
+    {
+        $image = Image::find($id);
+
+        return view('image.detail')
+        ->with(['image'=> $image]);
     }
 }

@@ -3,13 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             @include('includes.alert')
-
-            @foreach ($images as $image)
                 
             <div class="card my-3">
-               
                 
                 <div class="card-header">
                     @if ( $image->user->image)
@@ -18,7 +15,7 @@
                             class="img-fluid" alt="User Avatar">
                         </div>
                     @endif
-                    <a href="{{ route('image.detail',['id'=>$image->id]) }}" class="nav-link text-dark">
+                    <a href="" class="nav-link text-dark">
                         <span class="float-left ml-3">
                             <b>{{ $image->user->name }}</b> |
                             <b class="text-secondary">{{  $image->user->nick }}</b>
@@ -48,15 +45,7 @@
 
                 </div>
             </div>
-            @endforeach
             
-            {{-- PAGINACION --}}
-            {{-- La paginacion de Laravel muy easy --}}
-
-            <div class="clearfix"></div>
-            <div class="container w3-center">
-                {{ $images->links()}} 
-            </div>
         </div>
     </div>
 </div>

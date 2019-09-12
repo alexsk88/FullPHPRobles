@@ -10,3 +10,23 @@
 {
     height: 40px;
 }
+.tarjetaimagen
+{
+    padding: 0!important;
+    margin: 0!important;
+}
+.imagenhome
+{
+    height: 400px;
+    width: 100vw !important;
+}
+.w3-center
+{
+    display:inline-block !important;
+    width:auto!important;
+}
+
+.pointer
+{
+    cursor: pointer !important;
+}
