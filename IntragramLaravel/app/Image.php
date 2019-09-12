@@ -14,7 +14,7 @@ class Image extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment')->orderBy('id','desc');
         // Va traer los comentario de la Imagen
         // UNA IMAGEN TIENE MUCHOS COMENTARIOS
     }

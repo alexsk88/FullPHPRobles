@@ -37,4 +37,8 @@ Route::post('/images/save', 'ImageController@saveImg')->name('saveimg');
 Route::get('/imagen/userimagen/{filename}', 'ImageController@getImage')->name('image.user');
 Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
 
+/*Comentario */
+Route::post('/images/comment', 'CommentController@crear')->name('comment.img');
+Route::get('/images/comment/delete/{id}/{id_img}', 'CommentController@delete')
+        ->name('delete.comment');
 

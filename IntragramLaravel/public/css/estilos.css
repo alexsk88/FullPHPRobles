@@ -20,6 +20,11 @@
     height: 400px;
     width: 100vw !important;
 }
+.imagendetail
+{
+    height: 600px;
+    width: 100vw !important;
+}
 .w3-center
 {
     display:inline-block !important;
@@ -29,4 +34,10 @@
 .pointer
 {
     cursor: pointer !important;
+}
+
+.btn-removecomment{
+    float: right !important;
+    top: -60px !important;
+    position: relative;
 }

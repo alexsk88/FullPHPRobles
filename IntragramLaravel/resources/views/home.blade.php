@@ -33,7 +33,8 @@
                     </div>
 
                     <div class="mx-4 mt-5">
-                        <b class="text-secondary">{{  $image->user->nick }}</b>
+                        <b class="text-secondary">{{  $image->user->nick }}
+                        | {{ \FormatTime::LongTimeFilter($image->created_at) }}</b>
                         <p>{{ $image->description }}</p>    
                     </div>
 
