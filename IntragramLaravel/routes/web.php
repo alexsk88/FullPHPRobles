@@ -42,3 +42,6 @@ Route::post('/images/comment', 'CommentController@crear')->name('comment.img');
 Route::get('/images/comment/delete/{id}/{id_img}', 'CommentController@delete')
         ->name('delete.comment');
 
+/*Likes */
+Route::get('/like/{image_id}', 'LikeController@like')->name('like.save');
+
