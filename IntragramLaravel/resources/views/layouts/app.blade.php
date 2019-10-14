@@ -64,6 +64,10 @@
                                 Subir Imagen</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('likes') }}">
+                                Favoritas</a>
+                            </li>
+                            <li class="nav-item">
                                 &nbsp;
                             </li>
                             @if(Auth::user()->image)
