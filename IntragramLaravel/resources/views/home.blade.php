@@ -39,9 +39,32 @@
                     </div>
 
                     <div class="mx-4 mb-2">
-                        <img src="{{ asset('img/heart-black.png') }}" 
-                        width="25" class="img-fluid mr-2 pointer"
-                        alt=""> 
+                        {{ count($image->likes) }}
+
+                        {{-- Recorro los likes si el usuario le pertenece el like pinta el corazon rojo --}}
+                        @php
+                            $user_like = false;
+                            foreach ($image->likes as $like)
+                            {
+                                if($like->user->id == Auth::user()->id)
+                                {
+                                    $user_like = true;
+                                }
+                            }
+                        @endphp
+
+                        @if (!$user_like)
+                        
+                            <img src="{{ asset('img/heart-black.png') }}" 
+                            width="25" class="img-fluid mr-2 pointer btn-like"
+                            alt="" data-id="{{ $image->id}}"> 
+
+                        @else
+                            <img src="{{ asset('img/heart-red.png') }}" 
+                            width="25" class="img-fluid mr-2 pointer btn-dislike"
+                            alt="" data-id="{{ $image->id}}"> 
+                        @endif
+                        
                         <a href="" class="btn btn-small btn-warning">
                             Comentarios ({{ count($image->comments) }})
                         </a>

@@ -16,17 +16,57 @@ class LikeController extends Controller
     {
         $user = \Auth::user();
         
-        $like = new Like();
-        $like->user_id = $user->id;
-        $like->image_id= (int)$image_id;
+        $isset_like = Like::where('user_id', $user->id)
+                        ->where('image_id', $image_id)
+                        ->count();
 
-        $like->save();
-        var_dump($like);
+        // var_dump($isset_like); die();
+        if($isset_like == 0)
+        {
+
+            $like = new Like();
+            $like->user_id = $user->id;
+            $like->image_id= (int)$image_id;
+            
+            $like->save();
+            return response()->json([
+                'like' => $like
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'messague' => 'Ya Existe Like'
+            ]);
+        }
+         //var_dump($like);
 
     }
 
     public function dislike($image_id)
     {
+        $user = \Auth::user();
         
+        $like = Like::where('user_id', $user->id)
+                        ->where('image_id', $image_id)
+                        ->first();
+
+        // var_dump($isset_like); die();
+        if($like)
+        {
+
+            $like->delete();
+            
+            return response()->json([
+                'like' => $like,
+                'messague' => 'Like Eliminados'
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'messague' => 'El Like NO EXISTE'
+            ]);
+        }   
     }
 }
