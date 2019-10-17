@@ -67,6 +67,14 @@
                     </div>
                     
                         <div class="mx-4 my-3">
+                               @if ( Auth::user() &&  $image->user->id == Auth::user()->id )
+                               <div class="border p-3">
+                                   {{-- <a href="{{ route('image.delete',['id'=>$image->id]) }}" class="btn btn-sm btn-danger">Borrar</a> --}}
+                                   <a href="{{ route('image.edit',['id'=>$image->id]) }}" class="btn btn-sm btn-primary">Actualizar</a>
+                                </div>
+                               @endif
+                                
+
                                 <h2>Comentarios ({{ count($image->comments) }})</h2>
                                 <hr>
                                 @include('includes.alert')
@@ -89,6 +97,7 @@
                                     </span>
                                 @enderror
                                 </div>
+                                
                                 <button type="submit" class="btn btn-block btn-primary">
                                     Comentar
                                 </button>

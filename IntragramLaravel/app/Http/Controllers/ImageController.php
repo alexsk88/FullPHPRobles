@@ -19,6 +19,15 @@ class ImageController extends Controller
         return view('image.create');
     }   
 
+    public function editview($id)
+    {
+        $image = Image::find($id);
+
+        return view('image.edit',[
+            'image' => $image
+        ]);
+    }   
+
     public function saveImg(Request $request)
     {
         $imagen = new Image();
@@ -61,5 +70,38 @@ class ImageController extends Controller
 
         return view('image.detail')
         ->with(['image'=> $image]);
+    }
+
+    public function editpost(Request $request, $id)
+    {
+        $image = Image::find($id);
+        $imagen_user = $request->file('imagen');
+        $descripcion = $request->input('descripcion');
+
+        $validate = $this->validate($request,[
+            'descripcion'=> 'String|max:255|required',
+            'imagen'=> 'image'
+        ]);
+
+        // Subir Imagen Al servidor
+        if($imagen_user != null && is_object($imagen_user))
+        {
+            // TODO boorar Imagen old
+            $newNameimg = time().$imagen_user->getClientOriginalName();
+            
+            \Storage::disk('images')->put($newNameimg, \File::get($imagen_user ));
+            \Storage::disk('images')->delete($image->image_path);
+
+            // Upate datos
+         
+            $image->image_path = $newNameimg;
+        }
+    
+        $image->description = $descripcion;
+        $image->save();
+        
+        return redirect()->route('home')
+        ->with(['messague'=> 'Imagen Editada Correctamente']);
+    
     }
 }

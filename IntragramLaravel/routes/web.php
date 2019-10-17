@@ -39,6 +39,11 @@ Route::get('/images/create', 'ImageController@create')->name('image.create');
 Route::post('/images/save', 'ImageController@saveImg')->name('saveimg');
 Route::get('/imagen/userimagen/{filename}', 'ImageController@getImage')->name('image.user');
 Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
+        /* Editar Post */
+        Route::get('/editimage/{id}', 'ImageController@editview')->name('image.edit');   
+        Route::post('/editpost/{id}', 'ImageController@editpost')->name('editpost');   
+        /* Eliminar Post */
+        Route::post('/post/{id}', 'ImageController@delete')->name('image.delete');
 
 /*Comentario */
 Route::post('/images/comment', 'CommentController@crear')->name('comment.img');
