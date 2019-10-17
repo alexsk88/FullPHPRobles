@@ -30,6 +30,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/configuracion', 'UserController@config')->name('config');
 Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.avatar');
 Route::post('/updateuser', 'UserController@update')->name('updateuser');
+Route::get('/profile/{id}', 'UserController@profile')->name('profile');
+
+
 
 /*Rutas de Imagen */
 Route::get('/images/create', 'ImageController@create')->name('image.create');

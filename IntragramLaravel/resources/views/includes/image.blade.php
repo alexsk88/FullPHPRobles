@@ -1,4 +1,4 @@
-<div class="card my-3">
+ <div class="card my-3">
       
     <div class="card-header">
         @if ( $image->user->image)
@@ -7,10 +7,11 @@
                 class="img-fluid" alt="User Avatar">
             </div>
         @endif
-        <a href="{{ route('image.detail',['id'=>$image->id]) }}" class="nav-link text-dark">
+        <a class="nav-link text-dark" 
+        href="{{ route('profile',['id'=>$image->user->id]) }}">
             <span class="float-left ml-3">
                 <b>{{ $image->user->name }}</b> |
-                <b class="text-secondary">{{  $image->user->nick }}</b>
+                @<b class="text-secondary">{{$image->user->nick }}</b>
             </span>
         </a>
     </div>
@@ -54,7 +55,8 @@
                 alt="" data-id="{{ $image->id}}"> 
             @endif
             
-            <a href="" class="btn btn-small btn-warning">
+            <a href="{{ route('image.detail',['id'=>$image->id]) }}"  
+            class="btn btn-small btn-warning">
                 Comentarios ({{ count($image->comments) }})
             </a>
         </div>
