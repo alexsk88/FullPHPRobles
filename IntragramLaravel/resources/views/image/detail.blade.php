@@ -71,6 +71,7 @@
                                <div class="border p-3">
                                    {{-- <a href="{{ route('image.delete',['id'=>$image->id]) }}" class="btn btn-sm btn-danger">Borrar</a> --}}
                                    <a href="{{ route('image.edit',['id'=>$image->id]) }}" class="btn btn-sm btn-primary">Actualizar</a>
+                                   <a href="{{ route('image.deletepost',['id'=>$image->id]) }}" class="btn btn-sm btn-danger">Borrar</a>
                                 </div>
                                @endif
                                 

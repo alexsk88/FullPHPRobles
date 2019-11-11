@@ -26,7 +26,10 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{ asset('img/insta.png') }}" 
+                    width="50" class="img-fluid mr-2 pointer "
+                    alt="" > 
+                    Clon Instagram
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
@@ -66,6 +69,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('likes') }}">
                                 Favoritas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('user.index') }}">
+                                Gente</a>
                             </li>
                             <li class="nav-item">
                                 &nbsp;

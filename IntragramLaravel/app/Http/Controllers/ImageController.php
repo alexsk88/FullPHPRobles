@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use App\Comment;
+use App\Like;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -99,9 +101,42 @@ class ImageController extends Controller
     
         $image->description = $descripcion;
         $image->save();
-        
+
         return redirect()->route('home')
         ->with(['messague'=> 'Imagen Editada Correctamente']);
     
+    }
+
+    public function deletepost($id)
+    {
+        $user = \Auth::user();
+        $image = Image::find($id);
+
+        $comments = Comment::where('image_id', $id)->get();
+        $likes = Like::where('image_id', $id)->get();
+
+
+        if($user && $image->user_id == $user->id )
+        {
+            if($comments && count($comments)>= 1)
+            {
+                foreach ($comments as $comment) {
+                    $comment->delete();
+                }
+            }
+            if($likes && count($likes)>= 1)
+            {
+                foreach ($likes as $like) {
+                    $like->delete();
+                }
+            }
+
+            \Storage::disk('images')->delete($image->image_path);
+            $image->delete();
+        
+        }
+        
+        return redirect()->route('home')
+        ->with(['messague'=> 'Imagen Eliminada']);
     }
 }

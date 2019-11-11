@@ -32,6 +32,8 @@ Route::get('/user/avatar/{filename}', 'UserController@getImage')->name('user.ava
 Route::post('/updateuser', 'UserController@update')->name('updateuser');
 Route::get('/profile/{id}', 'UserController@profile')->name('profile');
 
+Route::get('/gente/{search?}', 'UserController@index')->name('user.index');
+
 
 
 /*Rutas de Imagen */
@@ -43,7 +45,7 @@ Route::get('/imagen/{id}', 'ImageController@detail')->name('image.detail');
         Route::get('/editimage/{id}', 'ImageController@editview')->name('image.edit');   
         Route::post('/editpost/{id}', 'ImageController@editpost')->name('editpost');   
         /* Eliminar Post */
-        Route::post('/post/{id}', 'ImageController@delete')->name('image.delete');
+        Route::get('/deletepost/{id}', 'ImageController@deletepost')->name('image.deletepost');
 
 /*Comentario */
 Route::post('/images/comment', 'CommentController@crear')->name('comment.img');

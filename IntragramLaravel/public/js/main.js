@@ -61,4 +61,13 @@ window.addEventListener("load", function()
         });
     }
     dislike();
+
+    // Buscador
+
+    $('#buscador').submit(function(e){
+        // e.preventDefault();
+        
+        $(this).attr('action',url+'gente/'+$('#search').val());
+        $(this).submit();
+    });
 });
