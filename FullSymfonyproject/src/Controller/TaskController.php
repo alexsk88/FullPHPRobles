@@ -11,8 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 class TaskController extends AbstractController
 {
 
-    
-
     public function index()
     {
 
@@ -74,6 +72,9 @@ class TaskController extends AbstractController
     public function editar(Request $request,UserInterface $user)
     {
         // var_dump($request->query); die();
+        // Esto toca hacerlo con un formbluider, pero yo me ahorre
+        // o no me gustaba como se hace, asi que le hize con una request
+        // saque los parametros y breve, la vaina es la VALIDACION
         $ide =  $request->query->get('id_task');  
         $titulo = $request->query->get('titulo');
         $content = $request->query->get('content');
@@ -83,7 +84,6 @@ class TaskController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         // Hacer validacion que me da pereza 
 
-
         $task = $em->getRepository(Task::class)->find($ide);
 
         $task->setTitle($titulo);
@@ -92,11 +92,8 @@ class TaskController extends AbstractController
         $task->setCreatedAt(new \DateTime('now'));
         $task->setPriority($priority);
         $task->setHours($horas);
- 
-
         $em->persist($task);
         $em->flush();
-
 
         return $this->redirectToRoute('task');
     }
@@ -133,5 +130,27 @@ class TaskController extends AbstractController
 
 
         return $this->redirectToRoute('task');
+    }
+
+    public function delete($id)
+    {
+        // var_dump($id); die();
+        $repository = $this->getDoctrine()->getRepository(Task::class);
+        $task = $repository->find($id);
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($task);
+        $em->flush();
+        return $this->redirectToRoute('task');
+    }   
+
+    public function mistareas(UserInterface $user)
+    {
+        $tasks = $user->getTask();
+
+        return $this->render('task/mistask.html.twig',[
+            'tasks'=> $tasks
+        ]);
     }
 }

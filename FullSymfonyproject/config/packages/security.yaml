@@ -24,7 +24,7 @@ security:
         
             logout: 
                 path: /logout
-                target: /login
+                target: /
             # Logout me va a llevar a login cuando me salga de la app
 
         # Eso de form login es para crear un sesion de user en symfony
@@ -39,4 +39,13 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/editar, roles: ROLE_USER }
+        - { path: ^/edit_view, roles: ROLE_USER }
+        - { path: ^/crear, roles: ROLE_USER }
+        - { path: ^/crear_view, roles: ROLE_USER }
+        - { path: ^/delete, roles: ROLE_USER }
+        - { path: ^/task_detail, roles: ROLE_USER }
+        - { path: ^/task, roles: ROLE_USER }
+        - { path: ^/mistareas, roles: ROLE_USER }
+
+        # Rutas de seguridad con roles
