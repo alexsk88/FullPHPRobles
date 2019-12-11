@@ -12,14 +12,18 @@ window.addEventListener("load", function()
             $(this).attr('src', url+'img/heart-red.png')
             console.log("Like");
 
+            var id = $(this).data('id'); 
             $.ajax({
-                url: url+'like/'+$(this).data('id'),
+                url: url+'like/'+id,
                 type: 'GET',
                 success: function (res) 
                 {
                     if(res.like)
                     {
                         console.log("LIKE A POST");
+                        console.log(res.contador);
+                        $('.con_likes'+id).html(res.contador);
+                        
                     }
                     else
                     {
@@ -41,14 +45,18 @@ window.addEventListener("load", function()
             $(this).attr('src', url+'img/heart-black.png')
             console.log("Dislike");
 
+            var id = $(this).data('id'); 
             $.ajax({
-                url: url+'dislike/'+$(this).data('id'),
+                url: url+'dislike/'+id,
                 type: 'GET',
                 success: function (res) 
                 {
                     if(res.like)
                     {
                         console.log("DSILIKE A POST");
+                        console.log(res);
+                        $('.con_likes'+id).html(res.contador);
+                        
                     }
                     else
                     {

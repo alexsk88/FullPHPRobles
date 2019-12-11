@@ -31,6 +31,9 @@ class LikeController extends Controller
                         ->where('image_id', $image_id)
                         ->count();
 
+        $coontador = Like::where('image_id', $image_id)
+                        ->count();
+
         // var_dump($isset_like); die();
         if($isset_like == 0)
         {
@@ -41,7 +44,8 @@ class LikeController extends Controller
             
             $like->save();
             return response()->json([
-                'like' => $like
+                'like' => $like,
+                'contador' => $coontador+1
             ]);
         }
         else
@@ -62,6 +66,9 @@ class LikeController extends Controller
                         ->where('image_id', $image_id)
                         ->first();
 
+        $coontador = Like::where('image_id', $image_id)
+        ->count();
+
         // var_dump($isset_like); die();
         if($like)
         {
@@ -70,6 +77,7 @@ class LikeController extends Controller
             
             return response()->json([
                 'like' => $like,
+                'contador' => $coontador-1,
                 'messague' => 'Like Eliminados'
             ]);
         }

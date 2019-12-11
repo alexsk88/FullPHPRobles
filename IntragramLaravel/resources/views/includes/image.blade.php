@@ -29,7 +29,7 @@
         </div>
 
         <div class="mx-4 mb-2">
-            {{ count($image->likes) }}
+            <span class="con_likes{{ $image->id }}">{{ count($image->likes) }}</span>
 
             {{-- Recorro los likes si el usuario le pertenece el like pinta el corazon rojo --}}
             @php
